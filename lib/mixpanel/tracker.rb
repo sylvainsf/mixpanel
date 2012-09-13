@@ -53,6 +53,8 @@ module Mixpanel
       options.merge!(properties)
       params = build_event(event, options)
       parse_response request(params)
+      end
+
     end
 
     def ip
@@ -118,7 +120,7 @@ module Mixpanel
 
     def request(params)
       data = Base64.encode64(JSON.generate(params)).gsub(/\n/,'')
-      url = @import ? @url + data + '&api_key=' + @api_key : @url + data
+      url = @import ? @url + "=" + data + '&api_key=' + @api_key : @url + data
 
       if(@async)
         w = Tracker.worker
