@@ -53,8 +53,6 @@ module Mixpanel
       options.merge!(properties)
       params = build_event(event, options)
       parse_response request(params)
-      end
-
     end
 
     def ip
